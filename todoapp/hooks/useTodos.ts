@@ -17,8 +17,11 @@ export const useTodos = () => {
     setState(prev => ({ ...prev, error }));
   }, []);
 
-  const setTodos = useCallback((todos: Todo[]) => {
-    setState(prev => ({ ...prev, todos }));
+  const setTodos = useCallback((todos: Todo[] | ((prev: Todo[]) => Todo[])) => {
+    setState(prev => ({ 
+      ...prev, 
+      todos: typeof todos === 'function' ? todos(prev.todos) : todos 
+    }));
   }, []);
 
   // Fetch todos from API
@@ -44,15 +47,17 @@ export const useTodos = () => {
     setLoading(true);
     setError(null);
 
-    // Optimistic update
+    // Optimistic update with negative temp ID to avoid conflicts
+    const tempId = -Date.now(); // Use negative ID to avoid conflicts
     const tempTodo: Todo = {
-      id: Date.now(), // Temporary ID
+      id: tempId,
       userId: 1,
       title: title.trim(),
       completed: false,
     };
 
-    setTodos([tempTodo, ...state.todos]);
+    // Use function form to get current state
+    setTodos(currentTodos => [tempTodo, ...currentTodos]);
 
     const result = await todoApi.createTodo({
       userId: 1,
@@ -62,59 +67,77 @@ export const useTodos = () => {
 
     if (result.error) {
       setError(result.error);
-      // Revert optimistic update
-      setTodos(state.todos);
+      // Revert optimistic update by removing temp todo
+      setTodos(currentTodos => currentTodos.filter(todo => todo.id !== tempId));
     } else if (result.data) {
       // Replace temp todo with actual one from API
-      setTodos([result.data, ...state.todos]);
+      setTodos(currentTodos => currentTodos.map(todo => 
+        todo.id === tempId ? result.data! : todo
+      ));
     }
 
     setLoading(false);
-  }, [state.todos, setLoading, setError, setTodos]);
+  }, [setLoading, setError, setTodos]); // Remove state.todos from dependencies
 
   // Update todo
   const updateTodo = useCallback(async (id: number, updates: Partial<Todo>) => {
     setError(null);
 
-    // Optimistic update
-    const updatedTodos = state.todos.map(todo =>
-      todo.id === id ? { ...todo, ...updates } : todo
+    // Store original state for rollback
+    let originalTodos: Todo[] = [];
+    setState(currentState => {
+      originalTodos = currentState.todos;
+      return currentState;
+    });
+
+    // Optimistic update using function form
+    setTodos(currentTodos => 
+      currentTodos.map(todo => todo.id === id ? { ...todo, ...updates } : todo)
     );
-    setTodos(updatedTodos);
 
     const result = await todoApi.updateTodo(id, updates);
 
     if (result.error) {
       setError(result.error);
-      // Revert optimistic update
-      setTodos(state.todos);
+      // Revert to original state instead of fetching
+      setTodos(originalTodos);
     }
-  }, [state.todos, setError, setTodos]);
+  }, [setError, setTodos]);
 
   // Toggle todo completion
   const toggleTodo = useCallback(async (id: number) => {
-    const todo = state.todos.find(t => t.id === id);
-    if (!todo) return;
-
-    await updateTodo(id, { completed: !todo.completed });
-  }, [state.todos, updateTodo]);
+    // Find todo using current state access pattern
+    setState(currentState => {
+      const todo = currentState.todos.find(t => t.id === id);
+      if (todo) {
+        updateTodo(id, { completed: !todo.completed });
+      }
+      return currentState; // No state change here
+    });
+  }, [updateTodo]);
 
   // Delete todo
   const deleteTodo = useCallback(async (id: number) => {
     setError(null);
 
-    // Optimistic update
-    const filteredTodos = state.todos.filter(todo => todo.id !== id);
-    setTodos(filteredTodos);
+    // Store original state for rollback
+    let originalTodos: Todo[] = [];
+    setState(currentState => {
+      originalTodos = currentState.todos;
+      return currentState;
+    });
+
+    // Optimistic update using function form
+    setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
 
     const result = await todoApi.deleteTodo(id);
 
     if (result.error) {
       setError(result.error);
-      // Revert optimistic update
-      setTodos(state.todos);
+      // Revert to original state instead of fetching
+      setTodos(originalTodos);
     }
-  }, [state.todos, setError, setTodos]);
+  }, [setError, setTodos]);
 
   // Load todos on mount
   useEffect(() => {
