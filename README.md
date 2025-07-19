@@ -1,4 +1,4 @@
-# TodoFlow - แอปพลิเคชัน Todo List สมัยใหม่
+# TodoFlow - แอปพลิเคชัน Todo List 
 
 แอปพลิเคชัน Todo List ที่ทันสมัยและรองรับทุกขนาดหน้าจอ พัฒนาด้วย Next.js, TypeScript และ JSONPlaceholder API
 
