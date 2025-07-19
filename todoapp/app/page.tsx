@@ -15,29 +15,29 @@ export default function Home() {
           }}></div>
         </div>
         
-        <div className="relative max-w-6xl mx-auto px-6 py-16">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
           <div className="text-center">
-            <div className="inline-flex items-center gap-6 mb-6">
+            <div className="inline-flex items-center gap-3 sm:gap-6 mb-4 sm:mb-6">
               <div className="relative group">
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-xl rounded-3xl flex items-center justify-center shadow-2xl border border-white/30 group-hover:scale-105 transition-transform duration-300">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-xl rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border border-white/30 group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
               </div>
               <div className="text-left">
-                <h1 className="text-6xl font-bold text-white drop-shadow-lg tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white drop-shadow-lg tracking-tight">
                   Todo<span className="text-yellow-300">Flow</span>
                 </h1>
-                <div className="flex items-center gap-2 text-white/80 mt-2">
-                  <span className="text-sm font-medium">Smart & Intuitive</span>
+                <div className="flex items-center gap-2 text-white/80 mt-1 sm:mt-2">
+                  <span className="text-xs sm:text-sm font-medium">Smart & Intuitive</span>
                 </div>
               </div>
             </div>
-            <p className="text-white/90 text-2xl font-medium mb-4 leading-relaxed">
+            <p className="text-white/90 text-lg sm:text-xl lg:text-2xl font-medium mb-3 sm:mb-4 leading-relaxed px-2 hidden sm:block">
               Stay organized and get things done efficiently
             </p>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+            <p className="text-white/70 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-4 hidden sm:block">
               Modern task management with beautiful design and powerful features
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-16">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
         <TodoSection />
       </main>
 
