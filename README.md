@@ -325,11 +325,10 @@ pnpm start
 - **JSONPlaceholder API** for backend simulation
 - **React Hooks** for state management
 
-```
+
 ## 🏗️ Architecture & Design Decisions
 
 ### Project Structure
-
 ```
 todoapp/
 ├── app/                     # Next.js App Router
