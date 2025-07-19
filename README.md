@@ -1,21 +1,141 @@
 # TodoFlow - แอปพลิเคชัน Todo List สมัยใหม่
 
-แอปพลิเคชัน Todo List ที่ทันสมัยและรองรับทุกขนาดหน้าจอ พัฒนาด้วย Next.js, TypeScript และ JSONPlaceholder API รองรับการอัปเดตแบบ Optimistic, การจัดการข้อผิดพลาดอย่างครอบคลุม และการออกแบบ UI แบบไล่สีที่สวยงาม
+แอปพลิเคชัน Todo List ที่ทันสมัยและรองรับทุกขนาดหน้าจอ พัฒนาด้วย Next.js, TypeScript และ JSONPlaceholder API
 
-## 📝 สรุปโปรเจค (Project Summary)
+## 🚀 เริ่มต้นใช้งาน
 
-**TodoFlow** เป็นแอปพลิเคชัน Todo List ที่ออกแบบมาเพื่อแสดงความสามารถด้านการพัฒนาเว็บแอปพลิเคชันสมัยใหม่ โดยใช้เทคโนโลยีล้ำสมัยและเทคนิคการพัฒนาแบบมืออาชีพ
+### ข้อกำหนดเบื้องต้น
+- Node.js เวอร์ชัน 18 ขึ้นไป
+- pnpm (แนะนำ) หรือ npm/yarn
 
-### จุดเด่นของโปรเจค:
-- 🎯 **ครบถ้วนตามความต้องการ**: ตอบสนองทุกข้อกำหนดหลักและเพิ่มคุณสมบัติพิเศษ
-- 🚀 **เทคโนโลยีทันสมัย**: Next.js 15, TypeScript, Tailwind CSS
-- 📱 **Mobile-First Design**: รองรับทุกขนาดหน้าจออย่างสมบูรณ์
-- ⚡ **ประสิทธิภาพสูง**: Optimistic updates, Error recovery, Loading states
-- 🎨 **UI/UX ที่สวยงาม**: Gradient design, Glassmorphism effects
-- 🛡️ **ความปลอดภัย**: TypeScript strict mode, Error boundaries
-- 🔧 **สถาปัตยกรรมที่ดี**: Clean Architecture, Service Layer, Custom Hooks
+### การติดตั้งและรันโปรแกรม
+
+1. **เข้าไปที่โฟลเดอร์โปรเจค**
+   ```bash
+   cd todoapp
+   ```
+
+2. **ติดตั้ง dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **เริ่ม development server**
+   ```bash
+   pnpm dev
+   ```
+
+4. **เปิดใน browser**
+   ไปที่ `http://localhost:3000`
+
+### Build สำหรับ Production
+
+```bash
+pnpm build
+pnpm start
+```
+
+## ✨ คุณสมบัติหลัก
+
+- ✅ **CRUD Operations**: เพิ่ม, แก้ไข, ลบ, ดู todos
+- ✅ **เปลี่ยนสถานะ**: ทำเครื่องหมายเสร็จ/ไม่เสร็จ
+- ✅ **กรองข้อมูล**: ดู All, Active, Completed tasks
+- ✅ **Responsive Design**: รองรับทุกขนาดหน้าจอ
+- ✅ **Error Handling**: จัดการข้อผิดพลาดอย่างครอบคลุม
+- ✅ **Loading States**: แสดงสถานะการโหลด
+
+## 🛠️ เทคโนโลยีที่ใช้
+
+- **Next.js 15** - React Framework
+- **TypeScript** - Type Safety
+- **Tailwind CSS** - Styling
+- **JSONPlaceholder API** - Backend Simulation
+
+## 📋 วิธีใช้งาน
+
+- **เพิ่ม Todo**: พิมพ์ในช่องและกด Enter หรือปุ่ม "Add Task"
+- **เปลี่ยนสถานะ**: คลิก checkbox เพื่อทำเครื่องหมายเสร็จ/ไม่เสร็จ
+- **แก้ไข Todo**: คลิกที่ข้อความ todo เพื่อแก้ไข
+- **ลบ Todo**: คลิกปุ่มลบ (ถังขยะ)
+- **กรองข้อมูล**: ใช้แท็บ All/Active/Completed
 
 ---
+
+# TodoFlow - Modern Todo List Application
+
+A modern, responsive todo list application built with Next.js, TypeScript, and JSONPlaceholder API integration.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18 or higher
+- pnpm (recommended) or npm/yarn
+
+### Installation & Running
+
+1. **Navigate to the project directory**
+   ```bash
+   cd todoapp
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Start development server**
+   ```bash
+   pnpm dev
+   ```
+
+4. **Open in browser**
+   Navigate to `http://localhost:3000`
+
+### Build for Production
+
+```bash
+pnpm build
+pnpm start
+```
+
+## ✨ Key Features
+
+- ✅ **CRUD Operations**: Create, Read, Update, Delete todos
+- ✅ **Toggle Status**: Mark todos as complete/incomplete
+- ✅ **Smart Filtering**: View All, Active, or Completed tasks
+- ✅ **Responsive Design**: Works on all device sizes
+- ✅ **Error Handling**: Comprehensive error management
+- ✅ **Loading States**: Visual feedback during operations
+
+## �️ Tech Stack
+
+- **Next.js 15** - React Framework with App Router
+- **TypeScript** - Complete type safety
+- **Tailwind CSS** - Utility-first styling
+- **JSONPlaceholder API** - Backend simulation
+
+## 📋 Usage
+
+- **Add Todo**: Type in the input field and press Enter or click "Add Task"
+- **Toggle Status**: Click the checkbox to mark complete/incomplete
+- **Edit Todo**: Click on the todo text to edit inline
+- **Delete Todo**: Click the delete (trash) icon
+- **Filter Todos**: Use All/Active/Completed tabs
+
+## 🚀 Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+
+## 📄 License
+
+This project is created for educational purposes as part of a technical assessment.
+
+---
+
+*Built with ❤️ using Next.js, TypeScript, and Tailwind CSS*
 
 # TodoFlow - Modern Todo List Application
 
